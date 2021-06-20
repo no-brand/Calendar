@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    /*
+    * Remove buildToolVersion over Android Gradle Plugin 3.0.
+    * It can select minimum required one.
+    * https://dcom.google.dagger:hilt-androideveloper.android.com/studio/releases/gradle-plugin#3-0-0
+    */
+    compileSdkVersion rootProject.ext.android.compile
+
+    defaultConfig {
+        applicationId "com.nobrand.calendar"
+        minSdkVersion rootProject.ext.android.min
+        targetSdkVersion rootProject.ext.android.target
+        versionCode rootProject.ext.version.version_code
+        versionName rootProject.ext.version.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    kapt "com.google.dagger:hilt-android-compiler:${rootProject.ext.libs.hilt_version}"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.ext.libs.kotlin_version}"
+    implementation "androidx.core:core-ktx:${rootProject.ext.libs.androidx_core_version}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.libs.androidx_appcompact_version}"
+    implementation "com.google.android.material:material:${rootProject.ext.libs.material_version}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.libs.androidx_constraint_version}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${rootProject.ext.libs.androidx_lifecycle_version}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${rootProject.ext.libs.androidx_lifecycle_version}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${rootProject.ext.libs.androidx_navigation_version}"
+    implementation "androidx.navigation:navigation-ui-ktx:${rootProject.ext.libs.androidx_navigation_version}"
+    implementation "com.google.dagger:hilt-android:${rootProject.ext.libs.hilt_version}"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
