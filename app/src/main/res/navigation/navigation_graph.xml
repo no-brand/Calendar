@@ -8,8 +8,8 @@
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.nobrand.calendar.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.nobrand.calendar.ui.calendar.CalendarFragment"
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/navigation_statistics"
